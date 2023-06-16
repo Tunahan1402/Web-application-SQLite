@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Datenbank-Eintrag</title>
+</head>
+<body>
+    <h1>Datenbank-Eintrag</h1>
+    
+    <form id="entryForm">
+        <label for="entry1">Eintrag 1:</label>
+        <input type="text" id="entry1" name="entry1"><br>
+    
+        <label for="entry2">Eintrag 2:</label>
+        <input type="text" id="entry2" name="entry2"><br>
+    
+        <input type="button" value="Einträge speichern" onclick="insertData()">
+    </form>
+
+    <script>
+        function insertData() {
+            var entry1 = $('#entry1').val();
+            var entry2 = $('#entry2').val();
+
+            var data = {
+                entry1: entry1,
+                entry2: entry2
+            };
+
+            $.ajax({
+                url: 'insert.php',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    console.log(response);
+                    alert("Einträge erfolgreich hinzugefügt");
+                },
+                error: function() {
+                    console.log('Fehler beim Einfügen der Einträge');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
